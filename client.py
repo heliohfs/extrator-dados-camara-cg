@@ -3,28 +3,19 @@ from requests import Response
 from threading import Lock
 from typing import TypedDict
 
-DataSourceConfig = TypedDict('DataSourceConfig',
-                             {
-                                 'LBWEB_BASENAME': str,
-                                 'LBWEB_UDBNAME': str,
-                                 'LBWEB_SERVERNAME': str,
-                                 'LBWEB_SESSIONTIMEOUT': str,
-                                 'LBWEB_RECORDSPERPAGE': str,
-                                 'LBWEB_NOSHOWALLRECORDS': str,
-                                 'LBWEB_USERNAME': str,
-                                 'LBWEB_PASSWORD': str,
-                                 'LBWEB_OPENSESSION': str,
-                                 'LBWEB_RUNQBF': str,
-                             })
 
-IndicacaoConfig = TypedDict('IndicacaoConfig',
-                            {
-                                'numindic': str,
-                                'dataprotent': str,
-                                'dataano': str,
-                                'origemdoc': str,
-                                'assuntodoc': str
-                            })
+class DataSourceConfig(TypedDict):
+    LBWEB_BASENAME: str
+    LBWEB_UDBNAME: str
+    LBWEB_SERVERNAME: str
+    LBWEB_SESSIONTIMEOUT: str
+    LBWEB_RECORDSPERPAGE: str
+    LBWEB_NOSHOWALLRECORDS: str
+    LBWEB_USERNAME: str
+    LBWEB_PASSWORD: str
+    LBWEB_OPENSESSION: str
+    LBWEB_RUNQBF: str
+
 
 ProjetoDeLeiConfig = TypedDict('ProjetoDeLeiConfig',
                                {
@@ -100,25 +91,3 @@ class CMCGClient(metaclass=SingletonMeta):
             'LBWEB_NEXTPAGE': '>'
         })
         return r.text
-
-
-class IndicacaoClient(CMCGClient):
-    __ds_config: DataSourceConfig = {
-        "LBWEB_BASENAME": "SIL4_005MS",
-        "LBWEB_UDBNAME": "DEFUDB",
-        "LBWEB_SERVERNAME": "LOCALHOST",
-        "LBWEB_SESSIONTIMEOUT": "5",
-        "LBWEB_RECORDSPERPAGE": "10",
-        "LBWEB_NOSHOWALLRECORDS": "ok",
-        "LBWEB_USERNAME": "164FWT405XKYCGST",
-        "LBWEB_PASSWORD": "164FWT405XKYCGST",
-        "LBWEB_OPENSESSION": "ok",
-        "LBWEB_RUNQBF": "Consultar",
-    }
-
-    def __init__(self, query_config: IndicacaoConfig) -> None:
-        super(IndicacaoClient, self).__init__(
-            uri='/consulta-indic-lista.lbsp',
-            ds_config=IndicacaoClient.__ds_config,
-            query_config=query_config
-        )

@@ -1,15 +1,14 @@
-from client import IndicacaoClient
-from scraper import scrap_indicacao
+from indicacoes import scrap
+import json
 
 if __name__ == '__main__':
-    client = IndicacaoClient(
-        query_config={
-            'numindic': '',
-            'dataprotent': '',
-            'dataano': '2021',
-            'origemdoc': '',
-            'assuntodoc': ''
-        }
+    indicacoes = scrap(
+        numero='',
+        data_entrada='',
+        ano='2021',
+        autor='',
+        assunto=''
     )
 
-    scrap_indicacao(client.start())
+    with open('data.json', 'w') as outfile:
+        json.dump(indicacoes, outfile)
