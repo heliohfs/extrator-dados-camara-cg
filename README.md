@@ -6,7 +6,7 @@ Scraper desenvolvido em python com a finalidade de extrair dados relativos às a
 
 |                 | SCRAPER | DATASET |
 |-----------------|:-------:|:-------:|
-| INDICAÇÕES      |    ❌    |    ❌    |
+| INDICAÇÕES      |    ✔️   |    ❌    |
 | PROJETOS DE LEI |    ❌    |    ❌    |
 | PARECERES       |    ❌    |    ❌    |
 | EMENDAS         |    ❌    |    ❌    |
