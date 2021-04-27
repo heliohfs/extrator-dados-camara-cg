@@ -15,6 +15,12 @@ class Indicacao(TypedDict):
     tramites: List[Tramite]
 
 
+def scrap_indicacao_total_page_count(html: str) -> int:
+    d = PyQuery(html)
+    count = d('div[class="w3-col w3-half w3-left-align w3-small"] span[class="w3-text-blue"]:last').text()
+    return int(count)
+
+
 def scrap_indicacao(html: str) -> List[Indicacao]:
     d = PyQuery(html)
     # print()
